@@ -22,4 +22,13 @@ public static class MathUtility {
         from.y = to.y = 0f; // Clamp the y values
         return Vector3.Angle(from, to) < angle / 2;
     }
+
+    public static Vector3 GetDestination(Vector3 from, Vector3 to, float yRotation, float magnitude) {
+        Vector3 direction = from - to;
+
+        Quaternion rotation = Quaternion.Euler(new Vector3(0f, yRotation, 0f));
+        direction = rotation * direction;
+
+        return (direction * magnitude) + from;
+    }
 }
