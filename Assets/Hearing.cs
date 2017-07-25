@@ -3,21 +3,27 @@ using UnityEngine.AI;
 
 public class Hearing : MonoBehaviour {
 
+    public bool IsHearing { get { return isHearing; } }
+
     public float maxHearingDistance = 10f;
     public AudioSource selectedAudio;
     private NavMeshAgent agent;
+    private bool isHearing;
 
     private void Start() {
         agent = GetComponent<NavMeshAgent>();   // Cache the NavMeshAgent component
     }
 
     private void Update() {
+
+        // So if the audio source is playing some audio
         if (selectedAudio.isPlaying) {
-            agent.isStopped = false;
             float distance = GetAudioMagnitude(selectedAudio.transform.position);
             if (distance <= maxHearingDistance) {
-                agent.SetDestination(selectedAudio.transform.position);
+                isHearing = true;
             }
+        } else {
+            isHearing = false;
         }
     }
 
