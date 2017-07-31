@@ -26,7 +26,7 @@ public class EyeSight : MonoBehaviour, ISeeable {
         canSearch = true;
     }
 
-    public void Update() {
+    private void Update() {
         if (canSearch) {
             CanSeeObject();
         }

@@ -23,7 +23,9 @@ public class Flee : MonoBehaviour {
 
     private void Update() {
         if (eyeSight.GameObject != null || hearing.IsHearing) {
-            var destination = MathUtility.GetDestination(transform.position, eyeSight.GameObject.transform.position, Random.Range(-angleDeviation, angleDeviation), fleeDistance);
+            Vector3 destination = MathUtility.GetDestination(transform.position, 
+                eyeSight.GameObject.transform.position, 
+                Random.Range(-angleDeviation, angleDeviation), fleeDistance);
             if (!_lock) {
                 agent.SetDestination(destination);
                 _lock = true;
